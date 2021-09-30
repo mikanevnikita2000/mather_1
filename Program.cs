@@ -20,7 +20,6 @@ namespace mather_1
                 Console.WriteLine("4. Деление");
                 Console.WriteLine("5. Выход");
                 string num = Console.ReadLine();
-
             }
         }
         static bool AdditionAndSubtractionAndMultiplication(string num, bool isEnabled)
@@ -38,7 +37,6 @@ namespace mather_1
                 {
                     if (expectedResult == a + b)
                     {
-
                         Console.WriteLine($"сколько будет: {a} + {b}");
                         exampleResponse = a + b;
                     }
@@ -47,7 +45,6 @@ namespace mather_1
                 {
                     if (expectedResult == a - b)
                     {
-
                         Console.WriteLine($"сколько будет: {a} - {b}");
                         exampleResponse = a - b;
                     }
@@ -56,7 +53,6 @@ namespace mather_1
                 {
                     if (expectedResult == a * b)
                     {
-
                         Console.WriteLine($"сколько будет: {a} * {b}");
                         exampleResponse = a * b;
                     }
@@ -76,15 +72,10 @@ namespace mather_1
                     isHided = false;
                 }
             }
-
             return isEnabled;
-
-
-
         }
         static bool test(string visibleExpression, int expectedResult)
         {
-
             bool result = false;
             Console.WriteLine($"сколько будет: {visibleExpression}");
             while (!result)
@@ -101,46 +92,41 @@ namespace mather_1
             }
             return result;
         }
-        /*static bool TheDivisionMethod(int a, int b)
+        static bool TheDivisionMethod(bool isEnabled, bool isCorrect)
         {
-            string questions;
             while (isEnabled == false)
             {
-                if (prom1 == 1)
+                /*int[,,,,,,,,] loc =
                 {
-
-                    int[,,,,,,,,] loc =
+                { 1, 2, 3, 4, 5, 6, 7, 8, 9},
+                { 4, 6, 8, 10, 12, 14, 16, 18, 20 },
+                { 6, 9, 12, 15, 18, 21, 24, 28, 30 },
+                { 8, 12, 16, 20, 24, 28, 32, 36, 40 },
+                { 10, 15, 20, 25, 30, 35, 40, 45, 50 },
+                { 12, 18, 24, 30, 36, 42, 48, 54, 60 },
+                { 14, 21, 28, 35, 42, 49, 56, 63, 70 },
+                { 16, 24, 32, 40, 48, 56, 64, 72, 80 },
+                { 18, 27, 36, 45, 54, 63, 72, 81, 90 },
+                };*/
+                Random gpg = new Random();
+                int prom2 = gpg.Next(0, 9);
+                int n = 0 ;
+                while (isCorrect == false)
+                {
+                    Console.WriteLine($"сколько будет: {n} : 2");
+                    int expectedResult = (Convert.ToInt32(Console.ReadLine()));
+                    if (expectedResult == n / 2)
                     {
-                    { 1, 2, 3, 4, 5, 6, 7, 8, 9},
-                    { 4, 6, 8, 10, 12, 14, 16, 18, 20 },
-                    { 6, 9, 12, 15, 18, 21, 24, 28, 30 },
-                    { 8, 12, 16, 20, 24, 28, 32, 36, 40 },
-                    { 10, 15, 20, 25, 30, 35, 40, 45, 50 },
-                    { 12, 18, 24, 30, 36, 42, 48, 54, 60 },
-                    { 14, 21, 28, 35, 42, 49, 56, 63, 70 },
-                    { 16, 24, 32, 40, 48, 56, 64, 72, 80 },
-                    { 18, 27, 36, 45, 54, 63, 72, 81, 90 },
-                    };
-                    int prom2 = gpg.Next(0, 9);
-                    int n = loc[prom2];
-                    while (isCorrect == false)
+                        Console.WriteLine("Молодец! Правильно!");
+                        isCorrect = true;
+                    }
+                    else
                     {
-                        Console.WriteLine($"сколько будет: {n} : 2");
-                        int expectedResult = (Convert.ToInt32(Console.ReadLine()));
-                        if (expectedResult == n / 2)
-                        {
-                            Console.WriteLine("Молодец! Правильно!");
-                            isCorrect = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("попробуй ещё раз");
-                        }
+                        Console.WriteLine("попробуй ещё раз");
                     }
                 }
-
+            }
                 return isEnabled;
             }
-        }*/
-    }
+        }
 }
