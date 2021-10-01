@@ -96,7 +96,7 @@ namespace mather_1
         {
             while (isEnabled == false)
             {
-                /*int[,,,,,,,,] loc =
+                int[,] loc =
                 {
                 { 1, 2, 3, 4, 5, 6, 7, 8, 9},
                 { 4, 6, 8, 10, 12, 14, 16, 18, 20 },
@@ -107,26 +107,60 @@ namespace mather_1
                 { 14, 21, 28, 35, 42, 49, 56, 63, 70 },
                 { 16, 24, 32, 40, 48, 56, 64, 72, 80 },
                 { 18, 27, 36, 45, 54, 63, 72, 81, 90 },
-                };*/
+                };
                 Random gpg = new Random();
-                int prom2 = gpg.Next(0, 9);
-                int n = 0 ;
-                while (isCorrect == false)
+                int exampleResponse;
+                int delimoe;
+                int generetdelitel = gpg.Next(0, 9);
+                int generetdelimoe = gpg.Next(0, 9);
+                if (generetdelitel == 0)
                 {
-                    Console.WriteLine($"сколько будет: {n} : 2");
-                    int expectedResult = (Convert.ToInt32(Console.ReadLine()));
-                    if (expectedResult == n / 2)
-                    {
-                        Console.WriteLine("Молодец! Правильно!");
-                        isCorrect = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("попробуй ещё раз");
-                    }
+                    delimoe = loc[0, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
                 }
+                if (generetdelitel == 1)
+                {
+                    delimoe = loc[1, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                if (generetdelitel == 2)
+                {
+                    delimoe = loc[2, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                if (generetdelitel == 3)
+                {
+                    delimoe = loc[3, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                if (generetdelitel == 4)
+                {
+                    delimoe = loc[4, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                if (generetdelitel == 5)
+                {
+                    delimoe = loc[5, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                if (generetdelitel == 6)
+                {
+                    delimoe = loc[6, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                if (generetdelitel == 7)
+                {
+                    delimoe = loc[7, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                if (generetdelitel == 8)
+                {
+                    delimoe = loc[8, generetdelimoe];
+                    exampleResponse = delimoe / generetdelitel;
+                }
+                int expectedResult = (Convert.ToInt32(Console.ReadLine()));
             }
                 return isEnabled;
-            }
         }
+    }
 }
