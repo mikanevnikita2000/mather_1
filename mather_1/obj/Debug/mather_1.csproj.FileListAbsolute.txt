@@ -1,0 +1,14 @@
+C:\Users\Nikita-PC\source\repos\mather_1\mather_1\obj\Debug\mather_1.csprojAssemblyReference.cache
+C:\Users\Nikita-PC\source\repos\mather_1\mather_1\obj\Debug\mather_1.csproj.CoreCompileInputs.cache
+C:\Users\Nikita-PC\source\repos\mather_1\mather_1\bin\Debug\mather_1.exe.config
+C:\Users\Nikita-PC\source\repos\mather_1\mather_1\bin\Debug\mather_1.exe
+C:\Users\Nikita-PC\source\repos\mather_1\mather_1\bin\Debug\mather_1.pdb
+C:\Users\Nikita-PC\source\repos\mather_1\mather_1\obj\Debug\mather_1.exe
+C:\Users\Nikita-PC\source\repos\mather_1\mather_1\obj\Debug\mather_1.pdb
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\mather_1.exe.config
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\mather_1.exe
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\mather_1.pdb
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\obj\Debug\mather_1.csprojAssemblyReference.cache
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\obj\Debug\mather_1.csproj.CoreCompileInputs.cache
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\obj\Debug\mather_1.exe
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\obj\Debug\mather_1.pdb
