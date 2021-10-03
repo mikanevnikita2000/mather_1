@@ -19,7 +19,6 @@ namespace mather_1
                 Console.WriteLine("3. Умножение");
                 Console.WriteLine("4. Деление");
                 Console.WriteLine("5. Выход");
-                Console.WriteLine("нука");
                 string num = Console.ReadLine();
             }
         }
