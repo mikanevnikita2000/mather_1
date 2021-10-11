@@ -93,11 +93,15 @@ namespace mather_1
                 {
                     result = true;
                     Console.WriteLine("Молодец! Правильно!");
+                    // здесь надо записать рузультат в бд
+                    Query.write_example_to_db(1, visibleExpression, true, "0");
                 }
                 else
                 {
                     Console.WriteLine("попробуй ещё раз");
+                    Query.write_example_to_db(1, visibleExpression, false, "0");
                 }
+
             }
         }
     }
