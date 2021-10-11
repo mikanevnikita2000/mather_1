@@ -11,7 +11,14 @@ namespace mather_1
 {
     public class Query
     {
-        public static void write_example_to_db(int user_id, string example,bool answer, string time)
+        /*public static void write_example_to_db1(string name, int age,  string time)
+        {
+            //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
+            string q1 = $"insert into users (id, name, age, correct_answers) values (1, {name}, \"{age}\", \"{time}\");";
+            query_execute(q1);
+            query_reader("SELECT * FROM result");
+        }*/
+        public static void write_example_to_db2(int user_id, string example,bool answer, string time)
         {
             //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
             string q1 = $"insert into result (id, user_id, example, answer, time) values (1, {user_id}, \"{example}\", {answer}, \"{time}\");";

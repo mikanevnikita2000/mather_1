@@ -9,6 +9,10 @@ namespace mather_1
             bool isEnabled = true;
             while (isEnabled)
             {
+                Console.WriteLine("Как тебя зовут?");
+                string name = String.Format(Console.ReadLine());
+                Console.WriteLine("сколько тебе лет?");
+                int age = Int32.Parse(Console.ReadLine());
                 Console.WriteLine("Выбери какие примеры тебе нужны:");
                 Console.WriteLine("1. Сложение ");
                 Console.WriteLine("2. Вычитание");
@@ -17,6 +21,7 @@ namespace mather_1
                 Console.WriteLine("5. Выход");
                 int num = Int32.Parse(Console.ReadLine());
                 isEnabled = AdditionAndSubtractionAndMultiplication(num);
+                //Query.write_example_to_db1(name, age, "10");
             }
         }
         static bool AdditionAndSubtractionAndMultiplication(int num)
@@ -94,12 +99,12 @@ namespace mather_1
                     result = true;
                     Console.WriteLine("Молодец! Правильно!");
                     // здесь надо записать рузультат в бд
-                    Query.write_example_to_db(1, visibleExpression, true, "0");
+                    Query.write_example_to_db2(1, visibleExpression, true, "0");
                 }
                 else
                 {
                     Console.WriteLine("попробуй ещё раз");
-                    Query.write_example_to_db(1, visibleExpression, false, "0");
+                    Query.write_example_to_db2(1, visibleExpression, false, "0");
                 }
 
             }
