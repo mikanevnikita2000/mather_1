@@ -11,13 +11,13 @@ namespace mather_1
 {
     public class Query
     {
-        /*public static void write_example_to_db1(string name, int age,  string time)
+        public static void write_example_to_db1(string name, int age, int time)
         {
             //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
-            string q1 = $"insert into users (id, name, age, correct_answers) values (1, {name}, \"{age}\", \"{time}\");";
+            string q1 = $"insert into user (id, name, age, correct_answers) values (1, \"{name}\", {age}, {time});";
             query_execute(q1);
-            query_reader("SELECT * FROM result");
-        }*/
+            query_reader("SELECT * FROM user");
+        }
         public static void write_example_to_db2(int user_id, string example,bool answer, string time)
         {
             //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
@@ -55,15 +55,15 @@ namespace mather_1
             }
             MySqlCommand cmd2 = new MySqlCommand(expr, conn);
             //посылаем запрос
-            try
-            {
+            /*try
+            {*/
                 cmd2.ExecuteNonQuery();
-            }
+            /*}
             catch
             {
                 Console.WriteLine("Ошибка при выполнения запроса 2");
                 return;
-            }
+            }*/
             conn.Close();
             conn.Dispose();
         }
@@ -101,7 +101,7 @@ namespace mather_1
             MySqlCommand cmd2 = new MySqlCommand(expr, conn);
             MySqlDataReader read = cmd2.ExecuteReader();
 
-            if (read != null)
+            /*if (read != null)
             {
                 while (read.Read())
                 {
@@ -112,7 +112,7 @@ namespace mather_1
                     string time = Convert.ToString(read["time"]);
                     Console.WriteLine(table_id + " : " + table_user_id + " : " + table_expression + " : " + answer + " : " + time);
                 }
-            }
+            }*/
 
             conn.Close();
             conn.Dispose();
