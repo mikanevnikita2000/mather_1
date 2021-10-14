@@ -1,22 +1,69 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tutorial.SqlConn;
 
 namespace mather_1
 {
     public class Query
     {
-        public static void write_example_to_db1(string name, int age, int time)
+        public static void write_example_to_db_name(string name)
         {
-            //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
-            string q1 = $"insert into user (id, name, age, correct_answers) values (1, \"{name}\", {age}, {time});";
+            string q1 = $"SELECT * FROM user WHERE name='{name}';";
             query_execute(q1);
             query_reader("SELECT * FROM user");
+        }
+        public static void write_example_to_db1(string name, int age, int time)
+        {
+            /*//Console.WriteLine("Getting Connection ...");
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            try
+            {
+                Console.WriteLine("Openning Connection ...");
+
+                conn.Open();
+
+                Console.WriteLine("Connection successful!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+
+            MySqlCommand cmd1 = new MySqlCommand("show schemas;", conn);   // ("use new;");
+            //посылаем запрос
+            try
+            {
+                cmd1.ExecuteNonQuery();
+            }
+            catch
+            {
+                Console.WriteLine("Ошибка при выполнения запроса 1");
+                return;
+            }
+            //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
+            MySqlCommand cmd2 = new MySqlCommand(expr, conn);
+            MySqlDataReader read = cmd2.ExecuteReader();
+            if (read != null)
+            {
+                while (read.Read())
+                {
+                    int table_id = Convert.ToInt32(read["id"]);
+                    string table_user_name = Convert.ToString(read["name"]);
+                    if (table_user_name == name)
+                    {
+
+                    }
+                }
+            }*/
+            string q1 = $"SELECT * FROM user WHERE name='{name}';";
+            query_execute(q1);
+            query_reader("SELECT * FROM user");
+            if (true)
+            {
+                q1 = $"insert into user (id, name, age, correct_answers) values (1, \"{name}\", {age}, {time});";
+                query_execute(q1);
+                query_reader("SELECT * FROM user");
+            }
         }
         public static void write_example_to_db2(int user_id, string example,bool answer, string time)
         {
@@ -55,15 +102,15 @@ namespace mather_1
             }
             MySqlCommand cmd2 = new MySqlCommand(expr, conn);
             //посылаем запрос
-            /*try
-            {*/
+            try
+            {
                 cmd2.ExecuteNonQuery();
-            /*}
+            }
             catch
             {
                 Console.WriteLine("Ошибка при выполнения запроса 2");
                 return;
-            }*/
+            }
             conn.Close();
             conn.Dispose();
         }
@@ -106,13 +153,16 @@ namespace mather_1
                 while (read.Read())
                 {
                     int table_id = Convert.ToInt32(read["id"]);
-                    int table_user_id = Convert.ToInt32(read["user_id"]);
-                    string table_expression = Convert.ToString(read["example"]);
-                    int answer = Convert.ToInt32(read["answer"]);
-                    string time = Convert.ToString(read["time"]);
-                    Console.WriteLine(table_id + " : " + table_user_id + " : " + table_expression + " : " + answer + " : " + time);
+                    string table_user_name = Convert.ToString(read["name"]);
+                    if (table_user_name == "")
+                    {
+                        
+                        
+                    }
+                    Console.WriteLine(table_id + " : " + table_user_name );
                 }
             }*/
+            
 
             conn.Close();
             conn.Dispose();

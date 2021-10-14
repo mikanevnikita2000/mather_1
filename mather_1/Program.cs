@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace mather_1
 {
@@ -11,6 +12,7 @@ namespace mather_1
             {
                 Console.WriteLine("Как тебя зовут?");
                 string name = Console.ReadLine();
+                Query.write_example_to_db_name(name);
                 Console.WriteLine("сколько тебе лет?");
                 int age = Int32.Parse(Console.ReadLine());
                 Query.write_example_to_db1(name, age, 10);
@@ -25,7 +27,7 @@ namespace mather_1
                 
             }
         }
-        static bool AdditionAndSubtractionAndMultiplication(int num)
+        st bool AdditionAndSubtractionAndMultiplication(int num)
         {
             string visibleExpression;
             bool isEnabled = true;
@@ -93,6 +95,11 @@ namespace mather_1
         {
             bool result = false;
             Console.WriteLine($"сколько будет: {visibleExpression}");
+            /*while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Enter))
+            {
+                Console.WriteLine("Текущие дата и время: {0}", DateTime.Now.ToString());
+                Thread.Sleep(2000);
+            }*/
             while (!result)
             {
                 if (expectedResult == (Convert.ToInt32(Console.ReadLine())))
@@ -101,6 +108,7 @@ namespace mather_1
                     Console.WriteLine("Молодец! Правильно!");
                     // здесь надо записать рузультат в бд
                     Query.write_example_to_db2(1, visibleExpression, true, "0");
+                    return;
                 }
                 else
                 {
