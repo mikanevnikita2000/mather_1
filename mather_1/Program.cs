@@ -27,7 +27,7 @@ namespace mather_1
                 
             }
         }
-        st bool AdditionAndSubtractionAndMultiplication(int num)
+        static bool AdditionAndSubtractionAndMultiplication(int num)
         {
             string visibleExpression;
             bool isEnabled = true;
@@ -95,28 +95,57 @@ namespace mather_1
         {
             bool result = false;
             Console.WriteLine($"сколько будет: {visibleExpression}");
-            /*while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Enter))
-            {
-                Console.WriteLine("Текущие дата и время: {0}", DateTime.Now.ToString());
-                Thread.Sleep(2000);
-            }*/
+            Console.WriteLine("что бы ввести ответ нажми \"1\"");
+            (string sec,int otvet) = timer();
+            Console.WriteLine(sec);
             while (!result)
             {
-                if (expectedResult == (Convert.ToInt32(Console.ReadLine())))
+                if (expectedResult == otvet)
                 {
                     result = true;
                     Console.WriteLine("Молодец! Правильно!");
                     // здесь надо записать рузультат в бд
-                    Query.write_example_to_db2(1, visibleExpression, true, "0");
+                    Query.write_example_to_db2(1, visibleExpression, true, sec);
                     return;
                 }
                 else
                 {
                     Console.WriteLine("попробуй ещё раз");
-                    Query.write_example_to_db2(1, visibleExpression, false, "0");
+                    Query.write_example_to_db2(1, visibleExpression, false, sec);
+
+                }
+                
+                Console.WriteLine(sec);
+            }
+            return;
+        }
+        internal static (string secu, int otvet) timer()
+        {
+            int sec = 0;
+            while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.D1))
+            {
+                
+                Thread.Sleep(2000);
+               
+                sec = sec + 1;
+            }
+            int otvet = Convert.ToInt32(Console.ReadLine());
+            string secu = Convert.ToString(sec);
+            return (secu, otvet);
+            //ConsoleKey.Enter
+            //&& (Convert.ToInt32(Console.ReadLine())
+            /*while (num != 1)
+            {
+                otvet = Convert.ToInt32(Console.ReadLine());
+                Thread.Sleep(1000);
+                sec = sec + 1;
+                if (otvet != 0)
+                {
+                    num = 1;
                 }
 
-            }
+            }*/
         }
     }
+    
 }
