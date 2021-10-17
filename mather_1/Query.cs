@@ -6,9 +6,9 @@ namespace mather_1
 {
     public class Query
     {
-        public static void write_example_to_db_name(string name)
+        public static void write_example_to_db_name()
         {
-            string q1 = $"SELECT * FROM user WHERE name='{name}';";
+            string q1 = $"SELECT * FROM user WHERE name='Ybrbnf';";
             query_execute(q1);
             query_reader("SELECT * FROM user");
         }
@@ -162,7 +162,36 @@ namespace mather_1
                     Console.WriteLine(table_id + " : " + table_user_name );
                 }
             }*/
+            bool torf = false;
+            int a = 0;
+            Console.WriteLine("Как тебя зовут?");
+            string name = Console.ReadLine();
             
+                if (read != null || a ==0)
+                {
+                    while (read.Read()|| a !=1)
+                    {
+                        int table_id = Convert.ToInt32(read["id"]);
+                        string table_user_id = Convert.ToString(read["name"]);
+                        int table_expression = Convert.ToInt32(read["age"]);
+                        int answer = Convert.ToInt32(read["correct_answers"]);
+                    
+                        if (table_user_id == name)
+                        {
+                            Console.WriteLine("есть такое имя");
+                            a=1;
+                            torf = true;
+                            Program.Bolen(torf);
+                        }
+                        else
+                        {
+                            Console.WriteLine("нет такого имени");
+                            Program.Bolen(torf);
+                        }
+                        Console.WriteLine(table_id + " : " + table_user_id + " : " + table_expression + " : " + answer );
+                    }
+                }
+
 
             conn.Close();
             conn.Dispose();

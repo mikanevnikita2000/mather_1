@@ -5,17 +5,12 @@ namespace mather_1
 {
     class Program
     {
-        static void Main()
+        private static void Main()
         {
             bool isEnabled = true;
             while (isEnabled)
             {
-                Console.WriteLine("Как тебя зовут?");
-                string name = Console.ReadLine();
-                Query.write_example_to_db_name(name);
-                Console.WriteLine("сколько тебе лет?");
-                int age = Int32.Parse(Console.ReadLine());
-                Query.write_example_to_db1(name, age, 10);
+                Name(true);
                 Console.WriteLine("Выбери какие примеры тебе нужны:");
                 Console.WriteLine("1. Сложение ");
                 Console.WriteLine("2. Вычитание");
@@ -132,19 +127,27 @@ namespace mather_1
             int otvet = Convert.ToInt32(Console.ReadLine());
             string secu = Convert.ToString(sec);
             return (secu, otvet);
-            //ConsoleKey.Enter
-            //&& (Convert.ToInt32(Console.ReadLine())
-            /*while (num != 1)
+        }
+        static void Name(bool torf)
+        {
+            Query.write_example_to_db_name();
+            if (torf == false)
             {
-                otvet = Convert.ToInt32(Console.ReadLine());
-                Thread.Sleep(1000);
-                sec = sec + 1;
-                if (otvet != 0)
-                {
-                    num = 1;
-                }
-
-            }*/
+                Console.WriteLine("Как тебя зовут?");
+                string name = Console.ReadLine();
+                Console.WriteLine("сколько тебе лет?");
+                int age = Int32.Parse(Console.ReadLine());
+                Query.write_example_to_db1(name, age, 10);
+            }
+            else
+            {
+                Console.WriteLine("уже есть такое имя");
+            }
+        }
+        internal static bool Bolen(bool torf) 
+        {
+            Name(torf);
+            return torf;
         }
     }
     
