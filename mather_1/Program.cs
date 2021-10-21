@@ -8,9 +8,10 @@ namespace mather_1
         private static void Main()
         {
             bool isEnabled = true;
+            int id=User_name();
             while (isEnabled)
             {
-                Name(true);
+                
                 Console.WriteLine("Выбери какие примеры тебе нужны:");
                 Console.WriteLine("1. Сложение ");
                 Console.WriteLine("2. Вычитание");
@@ -18,11 +19,11 @@ namespace mather_1
                 Console.WriteLine("4. Деление");
                 Console.WriteLine("5. Выход");
                 int num = Int32.Parse(Console.ReadLine());
-                isEnabled = AdditionAndSubtractionAndMultiplication(num);
+                isEnabled = AdditionAndSubtractionAndMultiplication(num,id);
                 
             }
         }
-        static bool AdditionAndSubtractionAndMultiplication(int num)
+        static bool AdditionAndSubtractionAndMultiplication(int num,int id)
         {
             string visibleExpression;
             bool isEnabled = true;
@@ -38,19 +39,19 @@ namespace mather_1
                 {
                     visibleExpression = ($"{a} + {b}");
                     expectedResult = a + b;
-                    test(expectedResult, visibleExpression);
+                    test(expectedResult, visibleExpression, id);
                 }
                 if (num == 2)
                 {
                     visibleExpression = ($"{a} - {b}");
                     expectedResult = a - b;
-                    test(expectedResult, visibleExpression);
+                    test(expectedResult, visibleExpression,id);
                 }
                 if (num == 3)
                 {
                     visibleExpression = ($"{a} * {b}");
                     expectedResult = a * b;
-                    test(expectedResult, visibleExpression);
+                    test(expectedResult, visibleExpression,id);
                 }
                 if (num == 4)
                 {
@@ -71,7 +72,7 @@ namespace mather_1
                     delimoe = loc[gpg.Next(0, 9), gpg.Next(0, 9)];
                     visibleExpression = ($"{delimoe} / {generetdelitel}");
                     expectedResult = delimoe / generetdelitel;
-                    test(expectedResult, visibleExpression);
+                    test(expectedResult, visibleExpression,id);
                 }
                 if (num == 5)
                 {
@@ -82,11 +83,12 @@ namespace mather_1
                 if (questions == "Нет" || questions == "нет")
                 {
                     isHided = false;
+                    return isEnabled;
                 }
             }
             return isEnabled;
         }
-        static void test( int expectedResult, string visibleExpression)
+        static void test( int expectedResult, string visibleExpression,int id)
         {
             bool result = false;
             Console.WriteLine($"сколько будет: {visibleExpression}");
@@ -100,16 +102,14 @@ namespace mather_1
                     result = true;
                     Console.WriteLine("Молодец! Правильно!");
                     // здесь надо записать рузультат в бд
-                    Query.write_example_to_db2(1, visibleExpression, true, sec);
+                    Query.write_example_to_db2(id, visibleExpression, true, sec);
                     return;
                 }
                 else
                 {
                     Console.WriteLine("попробуй ещё раз");
-                    Query.write_example_to_db2(1, visibleExpression, false, sec);
-
+                    Query.write_example_to_db2(id, visibleExpression, false, sec);
                 }
-                
                 Console.WriteLine(sec);
             }
             return;
@@ -120,35 +120,47 @@ namespace mather_1
             while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.D1))
             {
                 
-                Thread.Sleep(2000);
-               
+                Thread.Sleep(1000);//toDo Прочитать про много поточность и прочитать что такое Thread.Sleep
+                //ToDo считывать системное время
+
                 sec = sec + 1;
             }
             int otvet = Convert.ToInt32(Console.ReadLine());
             string secu = Convert.ToString(sec);
             return (secu, otvet);
         }
-        static void Name(bool torf)
+        internal static int User_name()
         {
-            Query.write_example_to_db_name();
-            if (torf == false)
+            Console.WriteLine("введи имя");
+            string name_user = Console.ReadLine();
+            (bool isUserExsist, int id)= ChecUser(name_user);
+            if (isUserExsist == false)
             {
+                Console.WriteLine("нет такого имени");
+                Console.WriteLine("Пройдите регистрацию:");
                 Console.WriteLine("Как тебя зовут?");
                 string name = Console.ReadLine();
                 Console.WriteLine("сколько тебе лет?");
                 int age = Int32.Parse(Console.ReadLine());
-                Query.write_example_to_db1(name, age, 10);
+                id = id + 1;
+                Query.write_example_to_db1(id, name, age, 10);
             }
-            else
+            if (isUserExsist == true)
             {
                 Console.WriteLine("уже есть такое имя");
+                return id;
             }
+            return id;
         }
-        internal static bool Bolen(bool torf) 
+        static (bool isUserExsist,int id) ChecUser(string name_user)
         {
-            Name(torf);
-            return torf;
+            bool isUserExsist= false;
+            int id=Query.read_user_from_db_name(name_user);
+            if (id != 0)
+            {
+                isUserExsist = true;
+            }
+            return (isUserExsist, id);
         }
     }
-    
 }
