@@ -8,9 +8,8 @@ namespace mather_1
     {
         public static  int  read_user_from_db_name(string user_name)
         {
-            int id = 0;
-            string q1 = $"SELECT * FROM user WHERE name='{user_name}';";
-            id = query_reader(q1);
+            string q1 = $"SELECT * FROM users WHERE name='{user_name}';";
+            int id = query_reader(q1);
             return id;
         }
         public static void write_example_to_db1(int id,string name, int age, int time)
@@ -56,20 +55,20 @@ namespace mather_1
                     }
                 }
             }*/
-            string q1 = $"SELECT * FROM user WHERE name='{name}';";
+            string q1 = $"SELECT * FROM users WHERE name='{name}';";
             query_execute(q1);
-            query_reader("SELECT * FROM user");
+            query_reader("SELECT * FROM users;");
             if (true)
             {
-                q1 = $"insert into user (id, name, age, correct_answers) values ({id}, \"{name}\", {age}, {time});";
+                q1 = $"insert into users ( name, age, correct_answers) values ( \"{name}\", {age}, {time});";
                 query_execute(q1);
-                //query_reader("SELECT * FROM user");
+                //query_reader("SELECT * FROM users;");
             }
         }
         public static void write_example_to_db2(int user_id, string example,bool answer, string time)
         {
             //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
-            string q1 = $"insert into result (id, user_id, example, answer, time) values (1, {user_id}, \"{example}\", {answer}, \"{time}\");";
+            string q1 = $"insert into result ( user_id, example, answer, time) values ( {user_id}, \"{example}\", {answer}, \"{time}\");";
             query_execute(q1);
             //query_reader("SELECT * FROM result");
         }
@@ -79,11 +78,7 @@ namespace mather_1
             MySqlConnection conn = DBUtils.GetDBConnection();
             try
             {
-                Console.WriteLine("Openning Connection ...");
-
                 conn.Open();
-
-                Console.WriteLine("Connection successful!");
             }
             catch (Exception e)
             {
@@ -123,11 +118,7 @@ namespace mather_1
             MySqlConnection conn = DBUtils.GetDBConnection();
             try
             {
-                Console.WriteLine("Openning Connection ...");
-
                 conn.Open();
-
-                Console.WriteLine("Connection successful!");
             }
             catch (Exception e)
             {
@@ -147,8 +138,6 @@ namespace mather_1
                 {
                     table_id1 = Convert.ToInt32(read["id"]);
                     string table_user = Convert.ToString(read["name"]);
-                    
-                    Console.WriteLine($"ID: {table_id1}, Name: {table_user}");
                     return table_id1;
                 }
             }

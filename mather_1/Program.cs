@@ -19,6 +19,7 @@ namespace mather_1
                 Console.WriteLine("4. Деление");
                 Console.WriteLine("5. Выход");
                 int num = Int32.Parse(Console.ReadLine());
+                Console.Clear();
                 isEnabled = AdditionAndSubtractionAndMultiplication(num,id);
                 
             }
@@ -78,11 +79,13 @@ namespace mather_1
                 {
                     isEnabled = false;
                 }
+                Console.Clear();
                 Console.WriteLine("Хочешь ещё пример?");
                 questions = Console.ReadLine();
                 if (questions == "Нет" || questions == "нет")
                 {
                     isHided = false;
+                    Console.Clear();
                     return isEnabled;
                 }
             }
@@ -126,7 +129,7 @@ namespace mather_1
                 sec = sec + 1;
             }
             int otvet = Convert.ToInt32(Console.ReadLine());
-            string secu = Convert.ToString(sec);
+            string secu = Convert.ToString(sec);//Переименовать 
             return (secu, otvet);
         }
         internal static int User_name()
