@@ -117,7 +117,7 @@ namespace mather_1
             }
             return;
         }
-        internal static (string secu, int otvet) timer()
+        internal static (string , int ) timer()
         {
             int sec = 0;
             while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.D1))
@@ -125,12 +125,12 @@ namespace mather_1
                 
                 Thread.Sleep(1000);//toDo Прочитать про много поточность и прочитать что такое Thread.Sleep
                 //ToDo считывать системное время
+                //time() returns the time as the number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
 
                 sec = sec + 1;
             }
             int otvet = Convert.ToInt32(Console.ReadLine());
-            string secu = Convert.ToString(sec);//Переименовать 
-            return (secu, otvet);
+            return (Convert.ToString(sec), otvet);
         }
         internal static int User_name()
         {

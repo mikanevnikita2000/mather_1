@@ -74,7 +74,6 @@ namespace mather_1
         }
         static void query_execute(string expr)
         {
-            //Console.WriteLine("Getting Connection ...");
             MySqlConnection conn = DBUtils.GetDBConnection();
             try
             {
@@ -85,8 +84,7 @@ namespace mather_1
                 Console.WriteLine("Error: " + e.Message);
             }
 
-            MySqlCommand cmd1 = new MySqlCommand("show schemas;", conn);   // ("use new;");
-            //посылаем запрос
+            MySqlCommand cmd1 = new MySqlCommand("show schemas;", conn);  
             try
             {
                 cmd1.ExecuteNonQuery();
@@ -97,7 +95,6 @@ namespace mather_1
                 return;
             }
             MySqlCommand cmd2 = new MySqlCommand(expr, conn);
-            //посылаем запрос
             try
             {
                 cmd2.ExecuteNonQuery();
@@ -114,7 +111,6 @@ namespace mather_1
 
         static int query_reader(string expr)
         {
-            //Console.WriteLine("Getting Connection ...");
             MySqlConnection conn = DBUtils.GetDBConnection();
             try
             {
@@ -137,7 +133,6 @@ namespace mather_1
                 while (read.Read())
                 {
                     table_id1 = Convert.ToInt32(read["id"]);
-                    string table_user = Convert.ToString(read["name"]);
                     return table_id1;
                 }
             }
