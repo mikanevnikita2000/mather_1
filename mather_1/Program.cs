@@ -78,6 +78,7 @@ namespace mather_1
                 if (num == 5)
                 {
                     isEnabled = false;
+                    return isEnabled;
                 }
                 Console.Clear();
                 Console.WriteLine("Хочешь ещё пример?");
@@ -88,14 +89,15 @@ namespace mather_1
                     Console.Clear();
                     return isEnabled;
                 }
+                
             }
             return isEnabled;
         }
         static void test( int expectedResult, string visibleExpression,int id)
         {
             bool result = false;
-            Console.WriteLine($"сколько будет: {visibleExpression}");
-            Console.WriteLine("что бы ввести ответ нажми \"1\"");
+            Console.WriteLine($"Сколько будет: {visibleExpression}");
+            Console.WriteLine("Что бы ввести ответ нажми \"1\"");
             (string sec,int otvet) = timer();
             Console.WriteLine(sec);
             while (!result)
@@ -110,7 +112,7 @@ namespace mather_1
                 }
                 else
                 {
-                    Console.WriteLine("попробуй ещё раз");
+                    Console.WriteLine("Попробуй ещё раз");
                     Query.write_example_to_db2(id, visibleExpression, false, sec);
                 }
                 Console.WriteLine(sec);
@@ -134,25 +136,28 @@ namespace mather_1
         }
         internal static int User_name()
         {
-            Console.WriteLine("введи имя");
+            Console.WriteLine("Введи имя:");
             string name_user = Console.ReadLine();
             (bool isUserExsist, int id)= ChecUser(name_user);
             if (isUserExsist == false)
             {
-                Console.WriteLine("нет такого имени");
+                Console.WriteLine("Нет такого имени");
                 Console.WriteLine("Пройдите регистрацию:");
-                Console.WriteLine("Как тебя зовут?");
-                string name = Console.ReadLine();
-                Console.WriteLine("сколько тебе лет?");
+                Console.WriteLine();
+                Console.WriteLine(name_user);
+                Console.WriteLine("Сколько тебе лет?");
+                Console.WriteLine();
                 int age = Int32.Parse(Console.ReadLine());
                 id = id + 1;
-                Query.write_example_to_db1(id, name, age, 10);
+                Query.write_example_to_db1(id, name_user, age, 10);
             }
             if (isUserExsist == true)
             {
-                Console.WriteLine("уже есть такое имя");
+                Console.WriteLine("Уже есть такое имя");
+                Console.Clear();
                 return id;
             }
+            Console.Clear();
             return id;
         }
         static (bool isUserExsist,int id) ChecUser(string name_user)
