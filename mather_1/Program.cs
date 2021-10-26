@@ -97,7 +97,6 @@ namespace mather_1
         {
             bool result = false;
             Console.WriteLine($"Сколько будет: {visibleExpression}");
-            Console.WriteLine("Что бы ввести ответ нажми \"1\"");
             (string sec,int otvet) = timer();
             Console.WriteLine(sec);
             while (!result)
@@ -113,7 +112,7 @@ namespace mather_1
                 else
                 {
                     Console.WriteLine("Попробуй ещё раз");
-                    Query.write_example_to_db2(id, visibleExpression, false, sec);
+                    Query.write_example_to_db2(id, visibleExpression, false, sec); 
                 }
                 Console.WriteLine(sec);
             }
@@ -122,16 +121,10 @@ namespace mather_1
         internal static (string , int ) timer()
         {
             int sec = 0;
-            while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.D1))
-            {
-                
-                Thread.Sleep(1000);//toDo Прочитать про много поточность и прочитать что такое Thread.Sleep
-                //ToDo считывать системное время
-                //time() returns the time as the number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
-
-                sec = sec + 1;
-            }
+            int uTime = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
             int otvet = Convert.ToInt32(Console.ReadLine());
+            int uTime1 = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            sec = uTime1 - uTime;
             return (Convert.ToString(sec), otvet);
         }
         internal static int User_name()
