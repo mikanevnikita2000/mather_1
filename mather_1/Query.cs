@@ -6,11 +6,19 @@ namespace mather_1
 {
     public class Query
     {
-        public static  int  read_user_from_db_name(string user_name)
+        public static (int id, int table_correct_answers1) read_user_from_db_name(string user_name)
         {
             string q1 = $"SELECT * FROM users WHERE name='{user_name}';";
-            int id = query_reader(q1);
-            return id;
+            (int id, string table_name1, int table_age1, int table_correct_answers1) = query_reader(q1);
+            return (id, table_correct_answers1);
+        }
+        public static int read_user_from_db_name1(int table_correct_answers1, int id)
+        { 
+            string q1 = $"UPDATE `users`SET `correct_answers` = {table_correct_answers1} WHERE `id` = {id};  ";
+            //(int id1, string table_name1, int table_age1, int table_correct_answers) = query_reader(q1);
+           // table_correct_answers = table_correct_answers1;
+            query_execute(q1);
+            return  table_correct_answers1;
         }
         public static void write_example_to_db1(int id,string name, int age, int time)
         {
@@ -109,7 +117,7 @@ namespace mather_1
         }
 
 
-        static int query_reader(string expr)
+        static (int table_id1, string table_name1, int table_age1, int table_correct_answers1) query_reader(string expr)
         {
             MySqlConnection conn = DBUtils.GetDBConnection();
             try
@@ -128,18 +136,26 @@ namespace mather_1
             MySqlCommand cmd2 = new MySqlCommand(expr, conn);
             MySqlDataReader read = cmd2.ExecuteReader();
             int table_id1 = 0;
+            string table_name1 = "";
+            int table_age1 = 0;
+            int table_correct_answers1 = 0;
             if (read != null )
             {
                 while (read.Read())
                 {
                     table_id1 = Convert.ToInt32(read["id"]);
-                    return table_id1;
+                    table_name1 = Convert.ToString(read["name"]);
+                    table_age1 = Convert.ToInt32(read["age"]);
+                    table_correct_answers1 = Convert.ToInt32(read["correct_answers"]);
+
+                    return (table_id1, table_name1, table_age1, table_correct_answers1);
                 }
             }
             conn.Close();
             conn.Dispose();
-           return table_id1;
+            return (table_id1, table_name1, table_age1, table_correct_answers1);
         }
+
 
     }
 }

@@ -8,7 +8,7 @@ namespace mather_1
         private static void Main()
         {
             bool isEnabled = true;
-            int id=User_name();
+            (int id, string name_user) =User_name();
             while (isEnabled)
             {
                 
@@ -20,11 +20,11 @@ namespace mather_1
                 Console.WriteLine("5. Выход");
                 int num = Int32.Parse(Console.ReadLine());
                 Console.Clear();
-                isEnabled = AdditionAndSubtractionAndMultiplication(num,id);
+                isEnabled = AdditionAndSubtractionAndMultiplication(num,id, name_user);
                 
             }
         }
-        static bool AdditionAndSubtractionAndMultiplication(int num,int id)
+        static bool AdditionAndSubtractionAndMultiplication(int num,int id, string name_user)
         {
             string visibleExpression;
             bool isEnabled = true;
@@ -40,19 +40,19 @@ namespace mather_1
                 {
                     visibleExpression = ($"{a} + {b}");
                     expectedResult = a + b;
-                    test(expectedResult, visibleExpression, id);
+                    test(expectedResult, visibleExpression, id, name_user);
                 }
                 if (num == 2)
                 {
                     visibleExpression = ($"{a} - {b}");
                     expectedResult = a - b;
-                    test(expectedResult, visibleExpression,id);
+                    test(expectedResult, visibleExpression, id, name_user);
                 }
                 if (num == 3)
                 {
                     visibleExpression = ($"{a} * {b}");
                     expectedResult = a * b;
-                    test(expectedResult, visibleExpression,id);
+                    test(expectedResult, visibleExpression, id, name_user);
                 }
                 if (num == 4)
                 {
@@ -73,7 +73,7 @@ namespace mather_1
                     delimoe = loc[gpg.Next(0, 9), gpg.Next(0, 9)];
                     visibleExpression = ($"{delimoe} / {generetdelitel}");
                     expectedResult = delimoe / generetdelitel;
-                    test(expectedResult, visibleExpression,id);
+                    test(expectedResult, visibleExpression,id, name_user);
                 }
                 if (num == 5)
                 {
@@ -93,7 +93,7 @@ namespace mather_1
             }
             return isEnabled;
         }
-        static void test( int expectedResult, string visibleExpression,int id)
+        static void test( int expectedResult, string visibleExpression,int id, string name_user)
         {
             bool result = false;
             Console.WriteLine($"Сколько будет: {visibleExpression}");
@@ -105,6 +105,10 @@ namespace mather_1
                 {
                     result = true;
                     Console.WriteLine("Молодец! Правильно!");
+                    (int id1, int table_correct_answers)  =Query.read_user_from_db_name(name_user);
+                    table_correct_answers = table_correct_answers + 1;
+                    Query.read_user_from_db_name1(table_correct_answers, id);
+
                     // здесь надо записать рузультат в бд
                     Query.write_example_to_db2(id, visibleExpression, true, sec);
                     return;
@@ -120,18 +124,17 @@ namespace mather_1
         }
         internal static (string , int ) timer()
         {
-            int sec = 0;
             int uTime = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
             int otvet = Convert.ToInt32(Console.ReadLine());
             int uTime1 = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
-            sec = uTime1 - uTime;
+            int sec = uTime1 - uTime;
             return (Convert.ToString(sec), otvet);
         }
-        internal static int User_name()
+        internal static (int id, string name_user) User_name()
         {
             Console.WriteLine("Введи имя:");
             string name_user = Console.ReadLine();
-            (bool isUserExsist, int id)= ChecUser(name_user);
+            (bool isUserExsist, int id, int table_correct_answers1) = ChecUser(name_user);
             if (isUserExsist == false)
             {
                 Console.WriteLine("Нет такого имени");
@@ -142,26 +145,27 @@ namespace mather_1
                 Console.WriteLine();
                 int age = Int32.Parse(Console.ReadLine());
                 id = id + 1;
+                
                 Query.write_example_to_db1(id, name_user, age, 10);
             }
             if (isUserExsist == true)
             {
                 Console.WriteLine("Уже есть такое имя");
                 Console.Clear();
-                return id;
+                return (id, name_user);
             }
             Console.Clear();
-            return id;
+            return (id, name_user);
         }
-        static (bool isUserExsist,int id) ChecUser(string name_user)
+        static (bool isUserExsist,int id, int table_correct_answers1) ChecUser(string name_user)
         {
             bool isUserExsist= false;
-            int id=Query.read_user_from_db_name(name_user);
+            (int id, int table_correct_answers1) = Query.read_user_from_db_name(name_user);
             if (id != 0)
             {
                 isUserExsist = true;
             }
-            return (isUserExsist, id);
+            return (isUserExsist, id, table_correct_answers1);
         }
     }
 }
