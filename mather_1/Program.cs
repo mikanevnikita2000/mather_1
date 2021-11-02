@@ -17,7 +17,8 @@ namespace mather_1
                 Console.WriteLine("2. Вычитание");
                 Console.WriteLine("3. Умножение");
                 Console.WriteLine("4. Деление");
-                Console.WriteLine("5. Выход");
+                Console.WriteLine("5. Статистика");
+                Console.WriteLine("6. Выход");
                 int num = Int32.Parse(Console.ReadLine());
                 Console.Clear();
                 isEnabled = AdditionAndSubtractionAndMultiplication(num,id, name_user);
@@ -30,12 +31,13 @@ namespace mather_1
             bool isEnabled = true;
             int expectedResult;           
             Random gpg = new Random();
-            int a = gpg.Next(100);
-            int b = gpg.Next(100);
+            
             string questions;
             bool isHided = true;
             while (isHided)
             {
+                int a = gpg.Next(100);
+                int b = gpg.Next(100);
                 if (num == 1)
                 {
                     visibleExpression = ($"{a} + {b}");
@@ -69,13 +71,38 @@ namespace mather_1
                         { 18, 27, 36, 45, 54, 63, 72, 81, 90 },
                     };
                     int delimoe;
-                    int generetdelitel = gpg.Next(0, 9);
+                    int generetdelitel = gpg.Next(1, 10);
                     delimoe = loc[gpg.Next(0, 9), gpg.Next(0, 9)];
                     visibleExpression = ($"{delimoe} / {generetdelitel}");
                     expectedResult = delimoe / generetdelitel;
                     test(expectedResult, visibleExpression,id, name_user);
                 }
                 if (num == 5)
+                {
+                    int sum = 0;
+                    int d = 0;
+                    (int table_age1, int table_correct_answers1) =Query.read_user_from_db_name2(name_user);
+                    (int sumslo, int summinus, int sumumno, int sumdelen) =Query.read_user_from_db_name3(id);
+                    (int[] chisla,int col) = Query.read_user_from_db_name2(id);
+                    for (int i = 0; i < col; i++)
+                    {
+                        sum = sum+ chisla[i];
+                        d++;
+                    }
+                    float sredznach = sum / d;
+                    Console.WriteLine($"Ваше имя: {name_user}");
+                    Console.WriteLine($"Ваш возраст: {table_age1}"); 
+                    Console.WriteLine($"количество правельных ответов: {table_correct_answers1} ");
+                    Console.WriteLine($"Ваше среднее время за последнии 100 примеров: {sredznach} секунд");
+                    Console.WriteLine($"Ошибок в сложении: {sumslo}");
+                    Console.WriteLine($"Ошибок в вычитании: {summinus}");
+                    Console.WriteLine($"Ошибок в умнижении: {sumumno}");
+                    Console.WriteLine($"Ошибок в делении: {sumdelen}");
+                    Console.ReadLine();
+                    Console.Clear();
+                    return isEnabled;
+                }
+                if (num == 6)
                 {
                     isEnabled = false;
                     return isEnabled;
@@ -85,7 +112,6 @@ namespace mather_1
                 questions = Console.ReadLine();
                 if (questions == "Нет" || questions == "нет")
                 {
-                    isHided = false;
                     Console.Clear();
                     return isEnabled;
                 }
@@ -95,40 +121,40 @@ namespace mather_1
         }
         static void test( int expectedResult, string visibleExpression,int id, string name_user)
         {
-            bool result = false;
-            Console.WriteLine($"Сколько будет: {visibleExpression}");
-            (string sec,int otvet) = timer();
-            Console.WriteLine(sec);
-            while (!result)
+            int pom = 0;
+            while (pom!=1)
             {
+                Console.WriteLine($"Сколько будет: {visibleExpression}");
+                (int sec, int otvet) = timer();
+                Console.WriteLine(sec);
+                
                 if (expectedResult == otvet)
                 {
-                    result = true;
                     Console.WriteLine("Молодец! Правильно!");
-                    (int id1, int table_correct_answers)  =Query.read_user_from_db_name(name_user);
+                    (int id1, int table_correct_answers) = Query.read_user_from_db_name(name_user);
                     table_correct_answers = table_correct_answers + 1;
                     Query.read_user_from_db_name1(table_correct_answers, id);
-
-                    // здесь надо записать рузультат в бд
                     Query.write_example_to_db2(id, visibleExpression, true, sec);
                     return;
                 }
-                else
+                if (expectedResult != otvet)
                 {
+                    Console.Clear();
                     Console.WriteLine("Попробуй ещё раз");
-                    Query.write_example_to_db2(id, visibleExpression, false, sec); 
+                    Query.write_example_to_db2(id, visibleExpression, false, sec);
                 }
                 Console.WriteLine(sec);
+                
             }
             return;
         }
-        internal static (string , int ) timer()
+        internal static (int , int ) timer()
         {
-            int uTime = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            DateTime value1 = DateTime.Now;
             int otvet = Convert.ToInt32(Console.ReadLine());
-            int uTime1 = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
-            int sec = uTime1 - uTime;
-            return (Convert.ToString(sec), otvet);
+            DateTime value2 = DateTime.Now;
+            int sec =(int)(value2-value1).TotalSeconds; ;
+            return (sec, otvet);
         }
         internal static (int id, string name_user) User_name()
         {
@@ -137,7 +163,7 @@ namespace mather_1
             (bool isUserExsist, int id, int table_correct_answers1) = ChecUser(name_user);
             if (isUserExsist == false)
             {
-                Console.WriteLine("Нет такого имени");
+                Console.Clear();   
                 Console.WriteLine("Пройдите регистрацию:");
                 Console.WriteLine();
                 Console.WriteLine(name_user);
@@ -146,7 +172,7 @@ namespace mather_1
                 int age = Int32.Parse(Console.ReadLine());
                 id = id + 1;
                 
-                Query.write_example_to_db1(id, name_user, age, 10);
+                Query.write_example_to_db1(id, name_user, age, 0);
             }
             if (isUserExsist == true)
             {
