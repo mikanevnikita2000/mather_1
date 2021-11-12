@@ -27,3 +27,6 @@ C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\System.Numerics.
 C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\MySql.Data.xml
 C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\obj\Debug\mather_1.exe.config
 C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\obj\Debug\mather_1.csproj.CopyComplete
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\NLog.config
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\NLog.dll
+C:\Users\Nikita-PC\Documents\GitHub\mather_1\mather_1\bin\Debug\NLog.xml

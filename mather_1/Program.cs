@@ -7,6 +7,7 @@ namespace mather_1
     {
         private static void Main()
         {
+            NLogger.Nlog();
             bool isEnabled = true;
             (int id, string name_user) =User_name();
             while (isEnabled)
@@ -24,6 +25,7 @@ namespace mather_1
                 isEnabled = AdditionAndSubtractionAndMultiplication(num,id, name_user);
                 
             }
+            NLogger.Nlog();
         }
         static bool AdditionAndSubtractionAndMultiplication(int num,int id, string name_user)
         {
@@ -79,25 +81,26 @@ namespace mather_1
                 }
                 if (num == 5)
                 {
+                    NLogger.Nlog();
                     int sum = 0;
                     int d = 0;
-                    (int table_age1, int table_correct_answers1) =Query.read_user_from_db_name2(name_user);
-                    (int sumslo, int summinus, int sumumno, int sumdelen) =Query.read_user_from_db_name3(id);
-                    (int[] chisla,int col) = Query.read_user_from_db_name2(id);
+                    (int table_age1, int table_correct_answers1) =Query.read_user_from_db_name_and_correct_answers(name_user);
+                    (int addition, int subtraction, int multiplication, int division) =Query.read_result_from_db_answer(id);
+                    (int[] time,int col) = Query.read_user_from_db_name_time_in_result(id);
                     for (int i = 0; i < col; i++)
                     {
-                        sum = sum+ chisla[i];
+                        sum = sum+ time[i];
                         d++;
                     }
-                    float sredznach = sum / d;
+                    float average_time = sum / d;
                     Console.WriteLine($"Ваше имя: {name_user}");
                     Console.WriteLine($"Ваш возраст: {table_age1}"); 
                     Console.WriteLine($"количество правельных ответов: {table_correct_answers1} ");
-                    Console.WriteLine($"Ваше среднее время за последнии 100 примеров: {sredznach} секунд");
-                    Console.WriteLine($"Ошибок в сложении: {sumslo}");
-                    Console.WriteLine($"Ошибок в вычитании: {summinus}");
-                    Console.WriteLine($"Ошибок в умнижении: {sumumno}");
-                    Console.WriteLine($"Ошибок в делении: {sumdelen}");
+                    Console.WriteLine($"Ваше среднее время за последнии 100 примеров: {average_time} секунд");
+                    Console.WriteLine($"Ошибок в сложении: {addition}");
+                    Console.WriteLine($"Ошибок в вычитании: {subtraction}");
+                    Console.WriteLine($"Ошибок в умнижении: {multiplication}");
+                    Console.WriteLine($"Ошибок в делении: {division}");
                     Console.ReadLine();
                     Console.Clear();
                     return isEnabled;
@@ -112,6 +115,7 @@ namespace mather_1
                 questions = Console.ReadLine();
                 if (questions == "Нет" || questions == "нет")
                 {
+                    NLogger.Nlog();
                     Console.Clear();
                     return isEnabled;
                 }
@@ -133,15 +137,15 @@ namespace mather_1
                     Console.WriteLine("Молодец! Правильно!");
                     (int id1, int table_correct_answers) = Query.read_user_from_db_name(name_user);
                     table_correct_answers = table_correct_answers + 1;
-                    Query.read_user_from_db_name1(table_correct_answers, id);
-                    Query.write_example_to_db2(id, visibleExpression, true, sec);
+                    Query.read_user_from_db_name_correct_answers(table_correct_answers, id);
+                    Query.write_example_to_db_result(id, visibleExpression, true, sec);
                     return;
                 }
                 if (expectedResult != otvet)
                 {
                     Console.Clear();
                     Console.WriteLine("Попробуй ещё раз");
-                    Query.write_example_to_db2(id, visibleExpression, false, sec);
+                    Query.write_example_to_db_result(id, visibleExpression, false, sec);
                 }
                 Console.WriteLine(sec);
                 
@@ -163,6 +167,7 @@ namespace mather_1
             (bool isUserExsist, int id, int table_correct_answers1) = ChecUser(name_user);
             if (isUserExsist == false)
             {
+                NLogger.Nlog();
                 Console.Clear();   
                 Console.WriteLine("Пройдите регистрацию:");
                 Console.WriteLine();
@@ -172,10 +177,11 @@ namespace mather_1
                 int age = Int32.Parse(Console.ReadLine());
                 id = id + 1;
                 
-                Query.write_example_to_db1(id, name_user, age, 0);
+                Query.write_example_to_db_usres(id, name_user, age, 0);
             }
             if (isUserExsist == true)
             {
+                NLogger.Nlog();
                 Console.WriteLine("Уже есть такое имя");
                 Console.Clear();
                 return (id, name_user);
