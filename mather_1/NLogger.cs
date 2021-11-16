@@ -12,19 +12,15 @@ namespace mather_1
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public static void Nlog()
         {
-            logger.Trace("");
-            logger.Info("");
+            /*var msg = new LogEventInfo(LogLevel.Info, "", "This is a message");
+            msg.Properties.Add("User", "Ray Donovan");*/
+            logger.Info(msg);
             logger.Warn("");
-            logger.Error("");
+            logger.Error(new Exception(), "This is an error message");
 
 
         }
-        /*public Form1()
-        {
-
-            InitializeComponent();
-
-        }*/
+       
     }
         
 }
