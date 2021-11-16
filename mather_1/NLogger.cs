@@ -14,7 +14,7 @@ namespace mather_1
         {
             /*var msg = new LogEventInfo(LogLevel.Info, "", "This is a message");
             msg.Properties.Add("User", "Ray Donovan");*/
-            logger.Info(msg);
+            logger.Info("");
             logger.Warn("");
             logger.Error(new Exception(), "This is an error message");
 
