@@ -67,10 +67,12 @@ namespace mather_1
             try
             {
                 conn.Open();
+                NLogger.NlogWarnBD();
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error: " + e.Message);
+                NLogger.NlogErrorBD(e.Message);
             }
 
             MySqlCommand cmd1 = new MySqlCommand("show schemas;", conn);
@@ -78,9 +80,10 @@ namespace mather_1
             {
                 cmd1.ExecuteNonQuery();
             }
-            catch
+            catch 
             {
                 Console.WriteLine("Ошибка при выполнения запроса 1");
+               
                 return;
             }
             MySqlCommand cmd2 = new MySqlCommand(expr, conn);
@@ -104,10 +107,12 @@ namespace mather_1
             try
             {
                 conn.Open();
+                NLogger.NlogWarnBD();
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error: " + e.Message);
+                NLogger.NlogErrorBD(e.Message);
             }
 
             MySqlCommand cmd1 = new MySqlCommand("show schemas;", conn);   // ("use new;");
@@ -146,6 +151,7 @@ namespace mather_1
             catch (Exception e)
             {
                 Console.WriteLine("Error: " + e.Message);
+                NLogger.NlogErrorBD(e.Message);
             }
 
             MySqlCommand cmd1 = new MySqlCommand("show schemas;", conn);   // ("use new;");

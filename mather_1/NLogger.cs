@@ -10,17 +10,30 @@ namespace mather_1
     class NLogger
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        public static void Nlog()
+        public static void NlogInfo(bool startOrStopProgram)
         {
-            /*var msg = new LogEventInfo(LogLevel.Info, "", "This is a message");
-            msg.Properties.Add("User", "Ray Donovan");*/
-            logger.Info("");
-            logger.Warn("");
-            logger.Error(new Exception(), "This is an error message");
-
-
+            if (startOrStopProgram == true)
+            {
+                logger.Info("start of the program");
+            }
+            else
+            {
+                logger.Info("stop of the program");
+            }
         }
-       
+        public static void NlogWarnAnswer(bool correct_answer, string visibleExpression,int otvet)
+        {
+            logger.Warn($" example: {visibleExpression}; answer: {otvet}; correct_answer: {correct_answer}");
+        }
+        public static void NlogWarnBD()
+        {
+            logger.Warn("connect with BD");
+        }
+        public static void NlogErrorBD(string Message)
+        {
+            logger.Error($"don't connect with BD. Error: {Message}");
+        }
+
     }
         
 }

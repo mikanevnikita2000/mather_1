@@ -7,12 +7,11 @@ namespace mather_1
     {
         private static void Main()
         {
-            NLogger.Nlog();
+            NLogger.NlogInfo(true);
             bool isEnabled = true;
             (int id, string name_user) =User_name();
             while (isEnabled)
             {
-                
                 Console.WriteLine("Выбери какие примеры тебе нужны:");
                 Console.WriteLine("1. Сложение ");
                 Console.WriteLine("2. Вычитание");
@@ -23,9 +22,8 @@ namespace mather_1
                 int num = Int32.Parse(Console.ReadLine());
                 Console.Clear();
                 isEnabled = AdditionAndSubtractionAndMultiplication(num,id, name_user);
-                
             }
-            NLogger.Nlog();
+            NLogger.NlogInfo(false);
         }
         static bool AdditionAndSubtractionAndMultiplication(int num,int id, string name_user)
         {
@@ -33,7 +31,6 @@ namespace mather_1
             bool isEnabled = true;
             int expectedResult;           
             Random gpg = new Random();
-            
             string questions;
             bool isHided = true;
             while (isHided)
@@ -54,6 +51,8 @@ namespace mather_1
                 }
                 if (num == 3)
                 {
+                    a = gpg.Next(0, 10);
+                    b = gpg.Next(0, 10);
                     visibleExpression = ($"{a} * {b}");
                     expectedResult = a * b;
                     test(expectedResult, visibleExpression, id, name_user);
@@ -81,7 +80,6 @@ namespace mather_1
                 }
                 if (num == 5)
                 {
-                    NLogger.Nlog();
                     int sum = 0;
                     int d = 0;
                     (int table_age1, int table_correct_answers1) =Query.read_user_from_db_name_and_correct_answers(name_user);
@@ -115,11 +113,10 @@ namespace mather_1
                 questions = Console.ReadLine();
                 if (questions == "Нет" || questions == "нет")
                 {
-                    NLogger.Nlog();
+                   
                     Console.Clear();
                     return isEnabled;
                 }
-                
             }
             return isEnabled;
         }
@@ -138,6 +135,7 @@ namespace mather_1
                     (int id1, int table_correct_answers) = Query.read_user_from_db_name(name_user);
                     table_correct_answers = table_correct_answers + 1;
                     Query.read_user_from_db_name_correct_answers(table_correct_answers, id);
+                    NLogger.NlogWarnAnswer(true, visibleExpression, otvet);
                     Query.write_example_to_db_result(id, visibleExpression, true, sec);
                     return;
                 }
@@ -145,10 +143,10 @@ namespace mather_1
                 {
                     Console.Clear();
                     Console.WriteLine("Попробуй ещё раз");
+                    NLogger.NlogWarnAnswer(false, visibleExpression, otvet);
                     Query.write_example_to_db_result(id, visibleExpression, false, sec);
                 }
                 Console.WriteLine(sec);
-                
             }
             return;
         }
@@ -167,7 +165,6 @@ namespace mather_1
             (bool isUserExsist, int id, int table_correct_answers1) = ChecUser(name_user);
             if (isUserExsist == false)
             {
-                NLogger.Nlog();
                 Console.Clear();   
                 Console.WriteLine("Пройдите регистрацию:");
                 Console.WriteLine();
@@ -176,12 +173,10 @@ namespace mather_1
                 Console.WriteLine();
                 int age = Int32.Parse(Console.ReadLine());
                 id = id + 1;
-                
                 Query.write_example_to_db_usres(id, name_user, age, 0);
             }
             if (isUserExsist == true)
             {
-                NLogger.Nlog();
                 Console.WriteLine("Уже есть такое имя");
                 Console.Clear();
                 return (id, name_user);

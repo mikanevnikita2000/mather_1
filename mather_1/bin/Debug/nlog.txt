@@ -1,13 +1,13 @@
-
-2021/11/13 12:47:07.623|Info|This is a message
-2021/11/13 12:47:07.683|Warn|
-2021/11/13 12:47:07.683|Error|This is an error message
-2021/11/13 12:47:10.244|Info|This is a message
-2021/11/13 12:47:10.244|Warn|
-2021/11/13 12:47:10.244|Error|This is an error message
-2021/11/13 12:47:21.761|Info|This is a message
-2021/11/13 12:47:21.761|Warn|
-2021/11/13 12:47:21.761|Error|This is an error message
-2021/11/13 12:47:32.553|Info|This is a message
-2021/11/13 12:47:32.553|Warn|
-2021/11/13 12:47:32.553|Error|This is an error message
+2021/11/17 19:49:34.793|Info|start of the program
+2021/11/17 19:49:37.474|Warn|connect with BD
+2021/11/17 19:49:45.749|Warn| example: 90 + 96; answer: 120; correct_answer: False
+2021/11/17 19:49:45.768|Warn|connect with BD
+2021/11/17 19:49:49.705|Warn|connect with BD
+2021/11/17 19:49:49.725|Warn|connect with BD
+2021/11/17 19:49:49.725|Warn| example: 90 + 96; answer: 186; correct_answer: True
+2021/11/17 19:49:49.725|Warn|connect with BD
+2021/11/17 19:50:06.953|Warn|connect with BD
+2021/11/17 19:50:06.978|Warn|connect with BD
+2021/11/17 19:50:06.978|Warn| example: 76 - 39; answer: 37; correct_answer: True
+2021/11/17 19:50:06.978|Warn|connect with BD
+2021/11/17 19:50:11.533|Info|stop of the program
