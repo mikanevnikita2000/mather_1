@@ -10,6 +10,8 @@ namespace mather_1
         {
             string q1 = $"SELECT * FROM users WHERE name='{user_name}';";
             (int id, string table_name1, int table_age1, int table_correct_answers1) = query_reader(q1);
+            string executed = "read_user_from_db_name";
+            NLogger.NlogWarnInquiryBD(executed);
             return (id, table_correct_answers1);
         }
         public static (int addition, int subtraction, int multiplication, int division) read_result_from_db_answer(int id)
@@ -23,6 +25,8 @@ namespace mather_1
             (int[] chisla3, int multiplication) = query_reader_average_time_and_answer(q3, x);
             string q4 = $"SELECT * FROM result WHERE example LIKE '%/%'AND user_id LIKE '{id}'AND answer LIKE '0';";
             (int[] chisla4, int division) = query_reader_average_time_and_answer(q4, x);
+            string executed = "read_result_from_db_answer";
+            NLogger.NlogWarnInquiryBD(executed);
             return (addition, subtraction, multiplication, division);
         }
             public static (int[],int) read_user_from_db_name_time_in_result(int id)
@@ -30,18 +34,24 @@ namespace mather_1
             string q1 = $"SELECT * FROM result WHERE user_id='{id}';";
             int x = 0;
             ( int[] time, int kol) = query_reader_average_time_and_answer(q1,x);
+            string executed = "read_user_from_db_name_time_in_result";
+            NLogger.NlogWarnInquiryBD(executed);
             return (time, kol);
         }
         public static (int table_age1, int table_correct_answers1) read_user_from_db_name_and_correct_answers(string user_name)
         {
             string q1 = $"SELECT * FROM users WHERE name='{user_name}';";
             (int id, string table_name1, int table_age1, int table_correct_answers1) = query_reader(q1);
+            string executed = "read_user_from_db_name_and_correct_answers";
+            NLogger.NlogWarnInquiryBD(executed);
             return (table_age1, table_correct_answers1);
         }
         public static int read_user_from_db_name_correct_answers(int table_correct_answers1, int id)
         {
             string q1 = $"UPDATE `users`SET `correct_answers` = {table_correct_answers1} WHERE `id` = {id};  ";
             query_execute(q1);
+            string executed = "read_user_from_db_name_correct_answers";
+            NLogger.NlogWarnInquiryBD(executed);
             return table_correct_answers1;
         }
         public static void write_example_to_db_usres(int id, string name, int age, int time)
@@ -54,12 +64,16 @@ namespace mather_1
                 q1 = $"insert into users ( name, age, correct_answers) values ( \"{name}\", {age}, {time});";
                 query_execute(q1);
             }
+            string executed = "write_example_to_db_usres";
+            NLogger.NlogWarnInquiryBD(executed);
         }
         public static void write_example_to_db_result(int user_id, string example, bool answer, int time)
         {
             //insert into result (id, user_id, example, answer, time) values (1, 1, "2 + 2", 1, "10");
             string q1 = $"insert into result ( user_id, example, answer, time) values ( {user_id}, \"{example}\", {answer}, {time});";
             query_execute(q1);
+            string executed = "write_example_to_db_result";
+            NLogger.NlogWarnInquiryBD(executed);
         }
         static void query_execute(string expr)
         {

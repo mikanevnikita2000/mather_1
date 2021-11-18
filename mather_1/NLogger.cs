@@ -21,7 +21,7 @@ namespace mather_1
                 logger.Info("stop of the program");
             }
         }
-        public static void NlogWarnAnswer(bool correct_answer, string visibleExpression,int otvet)
+        public static void NlogWarnAnswer(bool correct_answer, string visibleExpression, int otvet)
         {
             logger.Warn($" example: {visibleExpression}; answer: {otvet}; correct_answer: {correct_answer}");
         }
@@ -32,6 +32,10 @@ namespace mather_1
         public static void NlogErrorBD(string Message)
         {
             logger.Error($"don't connect with BD. Error: {Message}");
+        }
+        public static void NlogWarnInquiryBD(string executed)
+        {
+            logger.Warn($"boole the request is executed: {executed}");
         }
 
     }

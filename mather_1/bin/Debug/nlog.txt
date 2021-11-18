@@ -11,3 +11,24 @@
 2021/11/17 19:50:06.978|Warn| example: 76 - 39; answer: 37; correct_answer: True
 2021/11/17 19:50:06.978|Warn|connect with BD
 2021/11/17 19:50:11.533|Info|stop of the program
+2021/11/18 16:00:17.535|Info|start of the program
+2021/11/18 16:03:49.798|Warn|connect with BD
+2021/11/18 16:03:49.806|Warn|boole the request is executed: read_user_from_db_name
+2021/11/18 16:04:00.866|Warn|connect with BD
+2021/11/18 16:04:00.866|Warn|boole the request is executed: read_user_from_db_name
+2021/11/18 16:04:00.890|Warn|connect with BD
+2021/11/18 16:04:00.903|Warn|boole the request is executed: read_user_from_db_name_correct_answers
+2021/11/18 16:04:00.903|Warn| example: 21 + 90; answer: 111; correct_answer: True
+2021/11/18 16:04:00.903|Warn|connect with BD
+2021/11/18 16:04:00.903|Warn|boole the request is executed: write_example_to_db_result
+2021/11/18 16:04:09.589|Warn| example: 52 - 48; answer: 3; correct_answer: False
+2021/11/18 16:04:09.589|Warn|connect with BD
+2021/11/18 16:04:09.589|Warn|boole the request is executed: write_example_to_db_result
+2021/11/18 16:04:10.850|Warn|connect with BD
+2021/11/18 16:04:10.850|Warn|boole the request is executed: read_user_from_db_name
+2021/11/18 16:04:10.872|Warn|connect with BD
+2021/11/18 16:04:10.872|Warn|boole the request is executed: read_user_from_db_name_correct_answers
+2021/11/18 16:04:10.872|Warn| example: 52 - 48; answer: 4; correct_answer: True
+2021/11/18 16:04:10.872|Warn|connect with BD
+2021/11/18 16:04:10.883|Warn|boole the request is executed: write_example_to_db_result
+2021/11/18 16:04:16.246|Info|stop of the program
