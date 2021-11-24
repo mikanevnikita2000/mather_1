@@ -1,16 +1,4 @@
-2021/11/17 19:49:34.793|Info|start of the program
-2021/11/17 19:49:37.474|Warn|connect with BD
-2021/11/17 19:49:45.749|Warn| example: 90 + 96; answer: 120; correct_answer: False
-2021/11/17 19:49:45.768|Warn|connect with BD
-2021/11/17 19:49:49.705|Warn|connect with BD
-2021/11/17 19:49:49.725|Warn|connect with BD
-2021/11/17 19:49:49.725|Warn| example: 90 + 96; answer: 186; correct_answer: True
-2021/11/17 19:49:49.725|Warn|connect with BD
-2021/11/17 19:50:06.953|Warn|connect with BD
-2021/11/17 19:50:06.978|Warn|connect with BD
-2021/11/17 19:50:06.978|Warn| example: 76 - 39; answer: 37; correct_answer: True
-2021/11/17 19:50:06.978|Warn|connect with BD
-2021/11/17 19:50:11.533|Info|stop of the program
+
 2021/11/18 16:00:17.535|Info|start of the program
 2021/11/18 16:03:49.798|Warn|connect with BD
 2021/11/18 16:03:49.806|Warn|boole the request is executed: read_user_from_db_name
@@ -32,3 +20,10 @@
 2021/11/18 16:04:10.872|Warn|connect with BD
 2021/11/18 16:04:10.883|Warn|boole the request is executed: write_example_to_db_result
 2021/11/18 16:04:16.246|Info|stop of the program
+2021/11/23 17:39:43.849|Info|start of the program
+2021/11/23 17:39:47.551|Warn|connect with BD
+2021/11/23 17:39:47.591|Warn|boole the request is executed: read_user_from_db_name
+2021/11/23 17:39:50.306|Warn|connect with BD
+2021/11/23 17:39:50.306|Warn|boole the request is executed: read_user_from_db_name_and_correct_answers
+2021/11/23 17:39:50.412|Warn|boole the request is executed: read_result_from_db_answer
+2021/11/23 17:39:50.431|Warn|boole the request is executed: read_user_from_db_name_time_in_result

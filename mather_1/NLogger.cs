@@ -27,11 +27,11 @@ namespace mather_1
         }
         public static void NlogWarnBD()
         {
-            logger.Warn("connect with BD");
+            logger.Warn("connect to DB");
         }
         public static void NlogErrorBD(string Message)
         {
-            logger.Error($"don't connect with BD. Error: {Message}");
+            logger.Error($"don't connect to DB. Error: {Message}");
         }
         public static void NlogWarnInquiryBD(string executed)
         {
